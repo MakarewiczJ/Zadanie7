@@ -1,0 +1,44 @@
+﻿@page
+@model Uwierzytelanie.Pages.ClassModel
+@{
+}
+<center>
+    <h1 class="display-4">Ostatnio szukane</h1>
+    <br />
+    <div class="container row p-0 m-0">
+        <div class="col">
+            <h2 class="text-info">Zapisane w sesji</h2>
+        </div>
+        <div class="col-12 border p-0 mt-3">
+            <form method="post">
+                <table class="table">
+                    <tr>
+                        <th>
+                            <label>Liczba</label>
+                        </th>
+                        <th>
+                            <label>Odpowiedź</label>
+                        </th>
+                        <th>
+                            <label>Data</label>
+                        </th>
+                        <th>
+                            <label>Usuwanie</label>
+                        </th>
+                    </tr>
+                    </thead>
+                    @foreach (var item in Model.Wyszukania)
+                    {
+        <tbody>
+        <td align=center><h6> @Html.DisplayFor(modelItem => item.Liczba)<h6></td>
+        <td align=center><h6>@Html.DisplayFor(modelItem => item.Wynik)</h6></td>
+        <td align=center><h6>@Html.DisplayFor(modelItem => item.Data)</h6></td>
+        <td align=center>
+            @if ((item.UserID == null) || (item.UserID == Model.temp))
+            {
+    <button asp-route-id="@item.Id" class="btn btn-sm">Usun</button>}
+        </td>
+        </tbody>            }
+                </table>
+            </form>
+</center>
